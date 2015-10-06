@@ -23,3 +23,9 @@ chooseCar(data) {
   return data.questions[Math.floor(Math.random() * data.questions.length)];
 }
 ```
+
+So, are you see that `Promise.all` is useles?
+
+### Dependencies
+* es6 arrow functions (e.g. ships with babel)
+* Promise
