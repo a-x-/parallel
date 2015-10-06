@@ -1,0 +1,30 @@
+{
+  "name": "parallel",
+  "version": "1.0.0",
+  "description": "Run objest of functions of promises parallel and return promise where all are done",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/a-x-/parallel.git"
+  },
+  "keywords": [
+    "promise",
+    "es6"
+  ],
+  "author": "invntrm",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/a-x-/parallel/issues"
+  },
+  "homepage": "https://github.com/a-x-/parallel#readme",
+  "dependencies": {
+    "promise": "^7.0.4"
+  },
+  "devDependencies": {
+    "babel": "^5.8.23",
+    "gulp": "^3.9.0"
+  }
+}
