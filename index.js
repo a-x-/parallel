@@ -1,23 +1,32 @@
-var parallel = tasks => {return new Promise((resolve, reject) => {
+/**
+ * @file
+ * @example
+ * import prll from 'prll';
+ * prll({ a: () => new Promise(resolve => resolve(1)) }).then(data => console.log(data));
+ * // --> {a:1}
+ */
+
+var _ = require('lodash');
+var parallel = function(tasks) {return new Promise(function(resolve, reject) {
 
     var results = {},
         resultsCount = 0,
         tasksCount = _(tasks).size(),
         cb = resolve;
 
-    return new Promise((resolve, reject) => {
+    return new Promise(function(resolve, reject) {
 
         _(tasks)
-            .mapValues(task => task())
-            .forEach((promise, name) => promise.then(val => {
+            .mapValues(function(task) { return task(); })
+            .forEach(function(promise, name) { return promise.then(function(val) {
                 results[name] = val;
                 if (++resultsCount === tasksCount) cb(results);
-            }))
+            })})
             .value();
 
     });
 
 })};
 
-window && (window.parallel = parallel);
+typeof window != 'undefined' && (window.parallel = parallel);
 module.exports && (module.exports = parallel);
