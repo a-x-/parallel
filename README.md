@@ -1,10 +1,10 @@
 # parallel
-Run objest of functions of promises parallel and return promise where all are done
+Run object of functions of promises in parallel and return promise where all are done.
 
-### Why not Promise.all??
-Work with object instead of standart Promise.all, which support only arrays.
+### Why not Promise.all?
+Prll works with object instead of standart Promise.all, which support only arrays.
 
-### Use cases??
+### Use cases?
 ```js
 parallel(_.mapValues(
     { questions: '/data/questions.json', cv: '/data/user/_cv.json' },
@@ -27,5 +27,4 @@ chooseCar(data) {
 So, are you see that `Promise.all` is useles?
 
 ### Dependencies
-* es6 arrow functions (e.g. ships with babel)
 * Promise
