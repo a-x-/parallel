@@ -6,25 +6,20 @@ Prll works with object instead of standart Promise.all, which support only array
 
 ### Use cases?
 ```js
-parallel(_.mapValues(
-    { questions: '/data/questions.json', cv: '/data/user/_cv.json' },
-    url => () => $.ajax(url)
-))
-.then(this.storeData)
-.then(this.chooseCar)
-```
+import 'prll' as parallel;
 
-```js
-/**
- * @param {Object} data
- * @param {Object[]} data.questions
- */
-chooseCar(data) {
-  return data.questions[Math.floor(Math.random() * data.questions.length)];
-}
+parallel(
+    // { questions: Function, cv: Function }
+    _.mapValues(
+        {
+            questions: '/data/questions.json',
+            cv: '/data/user/_cv.json'
+        },
+        url => () => $.ajax(url)
+    )
+)
+.then(/* do stuff */);
 ```
-
-So, are you see that `Promise.all` is useles?
 
 ### Dependencies
 * Promise
