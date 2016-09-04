@@ -7,12 +7,11 @@
  */
 
 var _ = require('lodash');
-var parallel = function(tasks) {return new Promise(function(resolve, reject) {
+var parallel = function(tasks) {
 
     var results = {},
         resultsCount = 0,
-        tasksCount = _(tasks).size(),
-        cb = resolve;
+        tasksCount = _(tasks).size();
 
     return new Promise(function(resolve, reject) {
 
@@ -26,14 +25,17 @@ var parallel = function(tasks) {return new Promise(function(resolve, reject) {
                 }
                 promise.then(function(val) {
                     results[name] = val;
-                    if (++resultsCount === tasksCount) cb(results);
+                    if (++resultsCount === tasksCount) resolve(results);
+                });
+                promise.catch(function(err) {
+                    reject(err);
                 });
             })
             .value();
 
     });
 
-})};
+};
 
 typeof window != 'undefined' && (window.parallel = parallel);
-module.exports && (module.exports = parallel);
+typeof module != 'undefined' &&  module.exports && (module.exports = parallel);
