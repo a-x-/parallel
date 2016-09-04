@@ -1,5 +1,5 @@
 # parallel
-Run object of functions of promises in parallel and return promise where all are done.
+Run object of functions of promises in parallel and return a promise when all are done.
 
 ### Why not Promise.all?
 Prll works with object instead of standart Promise.all, which support only arrays.
@@ -23,3 +23,6 @@ parallel(
 
 ### Dependencies
 * Promise
+
+### Alternativies
+* [bluebird](https://github.com/petkaantonov/bluebird) [Promise.props](http://bluebirdjs.com/docs/api/promise.props.html)
