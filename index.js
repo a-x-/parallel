@@ -17,11 +17,18 @@ var parallel = function(tasks) {return new Promise(function(resolve, reject) {
     return new Promise(function(resolve, reject) {
 
         _(tasks)
-            .mapValues(function(task) { return task(); })
-            .forEach(function(promise, name) { return promise.then(function(val) {
-                results[name] = val;
-                if (++resultsCount === tasksCount) cb(results);
-            })})
+            .mapValues(function(task) {
+                return typeof task === 'function' ? task() : task
+            })
+            .forEach(function(promise, name) {
+                if (!(promise instanceof Promise)) {
+                    promise = Promise.resolve(promise)
+                }
+                promise.then(function(val) {
+                    results[name] = val;
+                    if (++resultsCount === tasksCount) cb(results);
+                });
+            })
             .value();
 
     });
