@@ -1,5 +1,5 @@
 # Parallel
-Runs a bunch of promises like `Promise.all` does, but takes object not array.
+Runs a bunch of promises like `Promise.all` does, but takes an object instead of array.
 
 Keep the differences:
 ```js
