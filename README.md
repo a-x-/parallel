@@ -6,13 +6,13 @@ Keep the differences:
 Promise.all([foo(), bar(), baz(), qux()])
   .then(arr => magic(arr[2], arr[0], arr[1]));
 ```
-
+vs
 ```js
 prll({foo: foo(), bar: bar(), baz: baz(), qux: qux()})
   .then(r => magic(r.baz, r.foo, r.bar, r.qux));
 ```
 
-With es6:
+Or with es6:
 ```js
 prll({a: foobar(), b: bazqux()})
   .then(({a, b}) => magic(a, b));
