@@ -1,28 +1,33 @@
-# parallel
-Run object of functions of promises in parallel and return a promise when all are done.
+# Parallel
+Runs a bunch of promises like `Promise.all` does, but takes object not array.
 
-### Why not Promise.all?
-Prll works with object instead of standart Promise.all, which support only arrays.
+Keep the differences:
+```js
+Promise.all([foo(), bar(), baz(), qux()])
+  .then(arr => magic(arr[2], arr[0], arr[1]));
+```
 
-### Use cases?
+```js
+prll({foo: foo(), bar: bar(), baz: baz(), qux: qux()})
+  .then(r => magic(r.baz, r.foo, r.bar, r.qux));
+```
+
+With es6:
+```js
+prll({a: foobar(), b: bazqux()})
+  .then(({a, b}) => magic(a, b));
+```
+
+### Example
 ```js
 import 'prll' as parallel;
 
-parallel(
-    // { questions: Function, cv: Function }
-    _.mapValues(
-        {
-            questions: '/data/questions.json',
-            cv: '/data/user/_cv.json'
-        },
-        url => () => $.ajax(url)
-    )
-)
-.then(/* do stuff */);
+parallel(_.mapValues({
+  questions: '/data/questions.json',
+  cv: '/data/user/_cv.json'
+}, url => $.ajax(url)))
+  .then(({questions, cv}) => console.log(questions, cv));
 ```
-
-### Dependencies
-* Promise
 
 ### Alternativies
 * [bluebird](https://github.com/petkaantonov/bluebird) [Promise.props](http://bluebirdjs.com/docs/api/promise.props.html)
