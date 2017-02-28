@@ -1,6 +1,6 @@
 {
   "name": "prll",
-  "version": "1.5.1",
+  "version": "1.5.2",
   "description": "Run objest of functions of promises parallel and return promise where all are done",
   "main": "index.js",
   "scripts": {
