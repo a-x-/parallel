@@ -21,7 +21,9 @@
   },
   "homepage": "https://github.com/a-x-/parallel#readme",
   "dependencies": {
-    "lodash": "^3.10.1"
+    "lodash.foreach": "^4.5.0",
+    "lodash.mapvalues": "^4.6.0",
+    "lodash.size": "^4.2.0"
   },
   "devDependencies": {
     "babel": "^5.8.23",

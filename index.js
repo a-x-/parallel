@@ -6,32 +6,37 @@
  * // --> {a:1}
  */
 
-var _ = require('lodash');
+var mapValues = require('lodash.mapvalues');
+var size = require('lodash.size');
+
 var parallel = function(tasks) {
 
     var results = {},
         resultsCount = 0,
-        tasksCount = _(tasks).size();
+        tasksCount = size(tasks);
 
     return new Promise(function(resolve, reject) {
 
-        _(tasks)
-            .mapValues(function(task) {
-                return typeof task === 'function' ? task() : task
-            })
-            .forEach(function(promise, name) {
-                if (!(promise instanceof Promise)) {
-                    promise = Promise.resolve(promise)
-                }
-                promise.then(function(val) {
-                    results[name] = val;
-                    if (++resultsCount === tasksCount) resolve(results);
-                });
-                promise.catch(function(err) {
-                    reject(err);
-                });
-            })
-            .value();
+        var tasks_ = mapValues(tasks, function(task) {
+            return typeof task === 'function' ? task() : task
+        });
+
+        mapValues(tasks_, function(promise, name) {
+
+            if (!(promise instanceof Promise)) {
+                promise = Promise.resolve(promise)
+            }
+
+            promise.then(function(val) {
+                results[name] = val;
+                if (++resultsCount === tasksCount) resolve(results);
+            });
+
+            promise.catch(function(err) {
+                reject(err);
+            });
+
+        });
 
     });
 
