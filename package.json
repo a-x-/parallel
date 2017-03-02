@@ -1,7 +1,7 @@
 {
   "name": "prll",
   "version": "1.5.2",
-  "description": "Run objest of functions of promises parallel and return promise where all are done",
+  "description": "Runs a bunch of promises like Promise.all does, but takes an object instead of array",
   "main": "index.js",
   "scripts": {
     "test": "node index.test.js"
