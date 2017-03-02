@@ -1,6 +1,6 @@
 {
   "name": "prll",
-  "version": "1.5.2",
+  "version": "1.5.3",
   "description": "Runs a bunch of promises like Promise.all does, but takes an object instead of array",
   "main": "index.js",
   "scripts": {
